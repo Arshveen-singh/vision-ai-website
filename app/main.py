@@ -109,11 +109,32 @@ def load_data():
 
 BLACKLIST, PROJECT_CONTEXT = load_data()
 
+# State for Easter Egg
+BEEP_BOP_COUNTER = 0
+
 @app.post("/api/chat")
 @limiter.limit("10/minute") # Increased for better experience
 async def chat_endpoint(request: Request, chat_request: ChatRequest):
-    global client
+    global client, BEEP_BOP_COUNTER
     print(f"DEBUG: Received message: {chat_request.message[:50]}...")
+    
+    # Easter Egg: beep beep bop
+    if chat_request.message.lower().strip() == "beep beep bop":
+        BEEP_BOP_COUNTER += 1
+        if BEEP_BOP_COUNTER == 1:
+            return {"response": "what is that?"}
+        elif BEEP_BOP_COUNTER == 2:
+            return {"response": "STOP YOU CANT"}
+        elif BEEP_BOP_COUNTER == 3:
+            BEEP_BOP_COUNTER = 0 # Reset for next time or stay at max
+            return {"response": (
+                "fine you win you caught me! Since you're so persistent, here is a secret guide on **How to Deploy Electron Apps**:\n\n"
+                "1. **Package your app:** Use `electron-builder` or `electron-packager`.\n"
+                "2. **Build for your OS:** Run your build script (e.g., `npm run build`) to generate the executable.\n"
+                "3. **Distribute:** Upload your `.exe`, `.dmg`, or `.AppImage` to platforms like GitHub Releases.\n"
+                "4. **Auto-updates:** Configure `electron-updater` to keep your users on the latest version.\n\n"
+                "Now that you've found the secret, how can I help you with Vision AI today?"
+            )}
     
     # 1. Blacklist Check
     message_lower = chat_request.message.lower()
