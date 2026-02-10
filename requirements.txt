@@ -6,3 +6,4 @@ slowapi
 email-validator
 pydantic[email]
 cryptography
+aiofiles
