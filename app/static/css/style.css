@@ -1136,61 +1136,90 @@ footer a:hover {
     line-height: 1.6;
 }
 
-.beta-input-group {
-    display: flex;
-    gap: 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 0.5rem;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.input-wrapper {
+  width: fit-content;
+  height: 45px;
+  border-radius: 20px;
+  padding: 5px;
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  background-color: #292524;
+  margin-top: 1rem;
 }
 
-.beta-input-group input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    padding: 0.8rem 1.2rem;
-    color: white;
-    font-family: inherit;
-    font-size: 1rem;
+.icon {
+  width: 30px;
+  fill: rgb(255, 255, 255);
+  margin-left: 8px;
+  transition: all 0.3s;
 }
 
-.beta-input-group input:focus {
-    outline: none;
+.input {
+  max-width: 250px; /* Increased slightly for better usability */
+  height: 100%;
+  border: none;
+  outline: none;
+  padding-left: 15px;
+  background-color: #292524;
+  color: white;
+  font-size: 1em;
 }
 
-.premium-btn {
-    background: var(--gradient-primary);
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease;
+.input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #292524 inset;
+  -webkit-text-fill-color: #ffffff;
 }
 
-.premium-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 242, 254, 0.3);
+.Subscribe-btn {
+  height: 100%;
+  width: 110px; /* Adjusted to fit text better */
+  border: none;
+  border-radius: 15px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  background-color: #ffffff;
+  font-weight: 600;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s;
 }
 
-.btn-shine {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-    animation: shine 3s infinite;
+.arrow {
+  position: absolute;
+  margin-right: 150px;
+  transition: all 0.3s;
 }
 
-@keyframes shine {
-    0% { left: -100%; }
-    20% { left: 100%; }
-    100% { left: 100%; }
+.input-wrapper:active .icon {
+  transform: scale(1.3);
+}
+
+.Subscribe-btn:hover {
+  color: white;
+}
+
+.Subscribe-btn:hover .arrow {
+  margin-right: 0;
+  animation: jello-vertical 0.9s both;
+  transform-origin: right;
+}
+
+@keyframes jello-vertical {
+  0% { transform: scale3d(1, 1, 1); }
+  30% { transform: scale3d(0.75, 1.25, 1); }
+  40% { transform: scale3d(1.25, 0.75, 1); }
+  50% { transform: scale3d(0.85, 1.15, 1); }
+  65% { transform: scale3d(1.05, 0.95, 1); }
+  75% { transform: scale3d(0.95, 1.05, 1); }
+  100% { transform: scale3d(1, 1, 1); }
+}
+
+.Subscribe-btn:active {
+  transform: scale(0.9);
 }
 
 .beta-feedback {

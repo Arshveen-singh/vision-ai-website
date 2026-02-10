@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // UI Loading State
             betaSubmit.disabled = true;
-            betaSubmit.querySelector('span').textContent = 'Joining...';
+            betaSubmit.querySelector('span').textContent = 'Subscribing...';
             
             try {
                 const response = await fetch('/api/beta-signup', {
