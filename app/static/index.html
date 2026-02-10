@@ -9,6 +9,7 @@
       content="Privacy-first multi-modal personal assistant with voice, vision, and automation."
     />
     <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
   </head>
   <body>
     <div id="loader-wrapper">
@@ -510,6 +511,36 @@
         </p>
       </footer>
     </div>
+
+
+    <!-- Chat Sidebar -->
+    <div id="chat-sidebar" class="chat-sidebar">
+      <div class="chat-header">
+        <div class="chat-title">
+          <span class="chat-icon">🤖</span>
+          <h3>Assistant</h3>
+        </div>
+        <button id="close-chat" class="close-btn">&times;</button>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="message bot-message">
+          Hello! I'm the Vision AI assistant. Ask me anything about this project! 🚀
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Type your question..." />
+        <button id="send-chat" class="send-btn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Chat Toggle Button -->
+    <button id="open-chat" class="chat-toggle-btn">
+      <span class="chat-toggle-icon">💬</span>
+    </button>
 
     <script src="/static/js/script.js"></script>
   </body>

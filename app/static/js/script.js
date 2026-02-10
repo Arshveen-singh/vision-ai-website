@@ -136,4 +136,131 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Fetch star count on load
     fetchStarCount();
+
+    // Chat Sidebar Logic
+    const chatSidebar = document.getElementById('chat-sidebar');
+    const openChatBtn = document.getElementById('open-chat');
+    const closeChatBtn = document.getElementById('close-chat');
+    const chatInput = document.getElementById('chat-input');
+    const sendChatBtn = document.getElementById('send-chat');
+    const chatMessages = document.getElementById('chat-messages');
+
+    function toggleChat() {
+        chatSidebar.classList.toggle('open');
+        const isOpen = chatSidebar.classList.contains('open');
+        openChatBtn.style.opacity = isOpen ? '0' : '1';
+        openChatBtn.style.pointerEvents = isOpen ? 'none' : 'auto';
+        
+        if (isOpen) {
+            setTimeout(() => chatInput.focus(), 500); // Wait for transition
+        }
+    }
+
+    openChatBtn.addEventListener('click', toggleChat);
+    closeChatBtn.addEventListener('click', toggleChat);
+
+    // Close chat when clicking outside
+    document.addEventListener('click', (e) => {
+        if (chatSidebar.classList.contains('open') && 
+            !chatSidebar.contains(e.target) && 
+            !openChatBtn.contains(e.target)) {
+            toggleChat();
+        }
+    });
+
+    // Send Message Logic
+    async function sendMessage() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        // Add User Message
+        addMessage(message, 'user');
+        chatInput.value = '';
+
+        // Show Typing Indicator
+        const typingId = showTypingIndicator();
+
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            });
+
+            const data = await response.json();
+            removeTypingIndicator(typingId);
+
+            if (response.ok) {
+                addMessage(data.response, 'bot');
+            } else {
+                // Show specific backend error if available
+                const errorText = data.error || "The assistant is busy or unavailable.";
+                addMessage(`⚠️ ${errorText}`, 'bot');
+            }
+        } catch (error) {
+            removeTypingIndicator(typingId);
+            addMessage("📡 Network error. Please check your connection.", 'bot');
+            console.error('Chat Error:', error);
+        }
+    }
+
+    sendChatBtn.addEventListener('click', sendMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+
+    function addMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', `${sender}-message`);
+        
+        try {
+            if (sender === 'bot') {
+                // Ensure marked is available
+                const parser = window.marked || marked;
+                if (typeof parser !== 'undefined') {
+                    // Support both .parse() and direct function call
+                    messageDiv.innerHTML = parser.parse ? parser.parse(text) : parser(text);
+                } else {
+                    // Fallback to plain text with link conversion
+                    const linkedText = text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" style="color: inherit; text-decoration: underline;">$1</a>');
+                    messageDiv.innerHTML = linkedText;
+                    console.warn('Markdown parser not found');
+                }
+            } else {
+                // User message formatting
+                const linkedText = text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" style="color: inherit; text-decoration: underline;">$1</a>');
+                messageDiv.innerHTML = linkedText;
+            }
+        } catch (err) {
+            console.error('Formatting error:', err);
+            messageDiv.textContent = text;
+        }
+        
+        chatMessages.appendChild(messageDiv);
+        scrollToBottom();
+    }
+
+    function showTypingIndicator() {
+        const id = 'typing-' + Date.now();
+        const typingDiv = document.createElement('div');
+        typingDiv.classList.add('typing-indicator');
+        typingDiv.id = id;
+        typingDiv.innerHTML = `
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        `;
+        chatMessages.appendChild(typingDiv);
+        scrollToBottom();
+        return id;
+    }
+
+    function removeTypingIndicator(id) {
+        const element = document.getElementById(id);
+        if (element) element.remove();
+    }
+
+    function scrollToBottom() {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
 });
