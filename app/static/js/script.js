@@ -263,4 +263,67 @@ document.addEventListener('DOMContentLoaded', () => {
     function scrollToBottom() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
+
+    // Beta Signup Form Handler
+    const betaForm = document.getElementById('beta-form');
+    const betaEmail = document.getElementById('beta-email');
+    const betaSubmit = document.getElementById('beta-submit');
+    const betaFeedback = document.getElementById('beta-feedback');
+
+    if (betaForm) {
+        betaForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = betaEmail.value.trim();
+            if (!email) return;
+
+            // Basic validation
+            if (!email.includes('@') || !email.includes('.')) {
+                showFeedback('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // UI Loading State
+            betaSubmit.disabled = true;
+            betaSubmit.querySelector('span').textContent = 'Joining...';
+            
+            try {
+                const response = await fetch('/api/beta-signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    showFeedback(data.message, 'success');
+                    betaForm.classList.add('hidden'); // Hide form on success
+                } else {
+                    showFeedback(data.message || 'Signup failed. Please try again.', 'error');
+                }
+            } catch (err) {
+                console.error('Beta signup error:', err);
+                showFeedback('Connection error. Is the server running?', 'error');
+            } finally {
+                betaSubmit.disabled = false;
+                betaSubmit.querySelector('span').textContent = 'Get Early Access';
+            }
+        });
+    }
+
+    function showFeedback(message, type) {
+        betaFeedback.textContent = message;
+        betaFeedback.className = `beta-feedback ${type}`;
+        betaFeedback.classList.remove('hidden');
+        
+        // Auto-hide error after 5s, but keep success
+        if (type === 'error') {
+            setTimeout(() => {
+                betaFeedback.classList.add('hidden');
+            }, 5000);
+        }
+    }
 });

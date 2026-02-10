@@ -2,8 +2,10 @@ from fastapi import FastAPI, Request, Response, HTTPException
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, Field, constr
+from pydantic import BaseModel, Field, constr, EmailStr
 import os
+import json
+from datetime import datetime
 from dotenv import load_dotenv
 from groq import Groq
 from slowapi import Limiter, _rate_limit_exceeded_handler
@@ -67,7 +69,49 @@ if not os.path.exists(static_dir):
 
 app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
-@app.get("/")
+class BetaSignup(BaseModel):
+    email: EmailStr
+
+@app.post("/api/beta-signup")
+async def beta_signup(signup: BetaSignup):
+    signup_file = os.path.join(os.path.dirname(__file__), "data", "beta_signups.json")
+    
+    # Create directory if it doesn't exist
+    os.makedirs(os.path.dirname(signup_file), exist_ok=True)
+    
+    try:
+        # Load existing signups
+        if os.path.exists(signup_file):
+            with open(signup_file, "r", encoding="utf-8") as f:
+                signups = json.load(f)
+        else:
+            signups = []
+            
+        # Check for duplicate
+        if any(s["email"] == signup.email for s in signups):
+            return JSONResponse(
+                status_code=400,
+                content={"message": "This email is already registered for beta testing!"}
+            )
+            
+        # Add new signup
+        signups.append({
+            "email": signup.email,
+            "timestamp": datetime.now().isoformat()
+        })
+        
+        # Save to the "Secret Vault"
+        with open(signup_file, "w", encoding="utf-8") as f:
+            json.dump(signups, f, indent=4)
+            
+        return {"message": "Success! You've been added to the secret vault. We'll email you when beta opens!"}
+        
+    except Exception as e:
+        print(f"Error in beta-signup: {e}")
+        return JSONResponse(
+            status_code=500,
+            content={"message": "Something went wrong. Please try again later."}
+        )
 async def read_root():
     return FileResponse(os.path.join(static_dir, "index.html"))
 
