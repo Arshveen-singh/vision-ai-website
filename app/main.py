@@ -21,13 +21,7 @@ app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 # Groq Client Initialization
-GROQ_API_KEY = os.getenv("GROQ_API_KEY") 
 client = None
-if GROQ_API_KEY:
-    try:
-        client = Groq(api_key=GROQ_API_KEY)
-    except Exception as e:
-        print(f"Failed to initialize Groq client: {e}")
 
 # Strict Input Validation Model
 class ChatRequest(BaseModel):
