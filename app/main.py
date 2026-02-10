@@ -117,6 +117,23 @@ async def beta_signup(request: Request, signup: BetaSignup):
 async def read_root():
     return FileResponse(os.path.join(static_dir, "index.html"))
 
+@app.get("/api/secret-view")
+async def secret_view(key: str = None):
+    # Verify the secret key
+    master_key = os.getenv("MASTER_KEY")
+    if not key or key != master_key:
+        return JSONResponse(
+            status_code=403,
+            content={"error": "Access Denied: Invalid Master Key"}
+        )
+    
+    signup_file = os.path.join(os.path.dirname(__file__), "data", "beta_signups.json")
+    if os.path.exists(signup_file):
+        with open(signup_file, "r", encoding="utf-8") as f:
+            signups = json.load(f)
+        return {"signups": signups, "count": len(signups)}
+    return {"signups": [], "count": 0}
+
 # Helper function to load context and blacklist
 def load_data():
     blacklist = []
