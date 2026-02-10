@@ -73,7 +73,8 @@ class BetaSignup(BaseModel):
     email: EmailStr
 
 @app.post("/api/beta-signup")
-async def beta_signup(signup: BetaSignup):
+@limiter.limit("5/minute")
+async def beta_signup(request: Request, signup: BetaSignup):
     signup_file = os.path.join(os.path.dirname(__file__), "data", "beta_signups.json")
     
     # Create directory if it doesn't exist
