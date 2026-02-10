@@ -6,24 +6,26 @@ A privacy-first AI assistant built for people who care about their data.
 
 Most AI tools force you online, lock you into subscriptions, and hide what they do with your data. Vision AI takes a different approach:
 
-✅ **Works offline** - Local mode by default, no internet required  
-✅ **Your API keys** - Bring your own, no subscription needed  
-✅ **Complete transparency** - See every cloud request in real-time  
-✅ **Military-grade encryption** - AES-256 for all conversations  
-✅ **Desktop-native** - Real system integration, not just a web wrapper  
-✅ **Multi-modal** - Chat, voice, vision, gestures, automation  
-✅ **Open source** - MIT license, inspect and modify freely  
+**Works offline** - Local mode by default, no internet required  
+**Your API keys** - Bring your own, no subscription needed  
+**Complete transparency** - See every cloud request in real-time  
+**Military-grade encryption** - AES-256 for all conversations  
+**Desktop-native** - Real system integration, not just a web wrapper  
+**Multi-modal** - Chat, voice, vision, gestures, automation  
+**Open source** - MIT license, inspect and modify freely
 
 ## Quick Start
 
 ### Installation
 
 1. **Check your system:**
+
    ```bash
    CHECK_SYSTEM.bat
    ```
 
 2. **Install dependencies:**
+
    ```bash
    INSTALL_DEPENDENCIES.bat
    ```
@@ -45,24 +47,28 @@ That's it! The setup wizard will guide you through the rest.
 ## Features
 
 ### Privacy-First Architecture
+
 - **Local Mode:** Everything runs on your machine
 - **Cloud Mode:** Optional, with full transparency
 - **Encrypted Storage:** AES-256 encryption for conversations
 - **Network Logging:** See exactly what data is sent
 
 ### Flexible AI Integration
+
 - **Groq:** Free, lightning-fast responses
 - **OpenAI:** GPT-4, GPT-3.5 Turbo
 - **Anthropic:** Claude 3 models
 - **Local Models:** LM Studio, Ollama, any OpenAI-compatible API
 
 ### Multi-Modal Interface
+
 - **Chat:** Natural language conversations
 - **Voice:** Speech-to-text and text-to-speech
 - **Vision:** OCR, image analysis, gesture recognition
 - **Automation:** Control your PC with natural language
 
 ### Desktop Experience
+
 - Native Electron app
 - System integration
 - Quick actions and widgets
@@ -71,22 +77,26 @@ That's it! The setup wizard will guide you through the rest.
 ## Documentation
 
 ### Getting Started
+
 - [Installation Guide](docs/setup/INSTALLATION.md)
 - [Quick Start](docs/setup/QUICK_START.md)
 - [System Requirements](docs/setup/SYSTEM_REQUIREMENTS.md)
 
 ### User Guides
+
 - [User Manual](docs/guides/USER_MANUAL.md)
 - [API Configuration](docs/guides/API_CONFIGURATION.md)
 - [Privacy Guide](docs/guides/PRIVACY_GUIDE.md)
 - [Troubleshooting](docs/guides/TROUBLESHOOTING.md)
 
 ### Security & Privacy
+
 - [Security Overview](docs/security/SECURITY_OVERVIEW.md)
 - [Privacy Policy](docs/security/PRIVACY_POLICY.md)
 - [Encryption Details](docs/security/ENCRYPTION.md)
 
 ### For Developers
+
 - [Architecture](docs/development/ARCHITECTURE.md)
 - [Contributing](docs/development/CONTRIBUTING.md)
 - [Building from Source](docs/development/BUILDING.md)
@@ -95,6 +105,7 @@ That's it! The setup wizard will guide you through the rest.
 ## System Requirements
 
 **Minimum:**
+
 - Intel i3 or equivalent
 - 4GB RAM
 - Windows 10+
@@ -102,6 +113,7 @@ That's it! The setup wizard will guide you through the rest.
 - Node.js (LTS)
 
 **Recommended:**
+
 - Intel i5 or better
 - 8GB RAM
 - SSD storage
@@ -134,6 +146,7 @@ See [Privacy Policy](docs/security/PRIVACY_POLICY.md) for details.
 ## Contributing
 
 We welcome contributions! See [Contributing Guide](docs/development/CONTRIBUTING.md) for:
+
 - Code style guidelines
 - Development setup
 - Testing requirements
@@ -142,12 +155,14 @@ We welcome contributions! See [Contributing Guide](docs/development/CONTRIBUTING
 ## Testing
 
 Comprehensive test suite covering:
+
 - Security (authentication, encryption, firewall)
 - Privacy (data isolation, network transparency)
 - Integration (end-to-end workflows)
 - Performance (memory, response time)
 
 Run tests:
+
 ```bash
 pytest
 ```
@@ -161,6 +176,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 ## Disclaimer
 
 Vision AI is provided as-is. Users are responsible for:
+
 - Their own API keys and associated costs
 - Compliance with third-party API terms of service
 - Securing their local data and encryption keys
@@ -185,6 +201,7 @@ See [Legal Risk Assessment](docs/security/LEGAL_RISK_ASSESSMENT.md) for details.
 ## Acknowledgments
 
 Built with:
+
 - [Electron](https://www.electronjs.org/) - Desktop framework
 - [FastAPI](https://fastapi.tiangolo.com/) - Backend API
 - [React](https://reactjs.org/) - UI framework

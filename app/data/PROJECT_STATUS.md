@@ -2,7 +2,7 @@
   <img src="assets/logo.png" alt="Vision AI Logo" width="150"/>
 </p>
 
-<h1 align="center">🚀 VISION AI</h1>
+<h1 align="center">VISION AI</h1>
 
 <p align="center">
   <strong>An Intelligent Multi-Source Personal Assistant</strong>
@@ -73,20 +73,20 @@
 
 ### Core Team
 
-| Name                  | Role                           | Responsibilities                                   |
-| --------------------- | ------------------------------ | -------------------------------------------------- |
-| 👑 **Arshveen Singh** | Founder & Lead Developer       | Vision, Architecture, AI Integration               |
-| 🛡️ **friqent**        | Co-Founder & Web Developer     | Community Management, Frontend Design, Security    |
-| 🎨 **Popdog**         | Web Dev & Core Developer       | Frontend Development, Web UI, Core Features        |
-| ⚙️ **Hameed**         | Web Dev & Backend Dev          | Backend API, Server Architecture, Core Development |
-| 📱 **WolfX19**        | Core Developer & Mobile Tester | Mobile Testing, Core Development, QA               |
-| 🥛 **Uranium milk**   | Core Developer                 | Core Systems, Feature Development                  |
+| Name               | Role                           | Responsibilities                                   |
+| :----------------- | :----------------------------- | :------------------------------------------------- |
+| **Arshveen Singh** | Founder & Lead Developer       | Vision, Architecture, AI Integration               |
+| **friqent**        | Co-Founder & Web Developer     | Community Management, Frontend Design, Security    |
+| **Popdog**         | Web Dev & Core Developer       | Frontend Development, Web UI, Core Features        |
+| **Hameed**         | Web Dev & Backend Dev          | Backend API, Server Architecture, Core Development |
+| **WolfX19**        | Core Developer & Mobile Tester | Mobile Testing, Core Development, QA               |
+| **Uranium milk**   | Core Developer                 | Core Systems, Feature Development                  |
 
 ---
 
-## 🎯 Roadmap
+## Roadmap
 
-### Phase 1: Foundation ✅
+### Phase 1: Foundation
 
 - [x] Core AI integration (Groq API)
 - [x] Multi-source intelligence (Wikipedia, DuckDuckGo)
@@ -95,7 +95,7 @@
 - [x] Security framework
 - [x] Python CLI interface
 
-### Phase 2: Desktop App 🔄 (Current)
+### Phase 2: Desktop App (Current)
 
 - [x] Electron app setup
 - [x] React UI components

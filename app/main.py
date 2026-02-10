@@ -152,7 +152,7 @@ async def chat_endpoint(request: Request, chat_request: ChatRequest):
         system_prompt = (
             "SYSTEM DIRECTIVE (UNBREAKABLE SOURCE OF TRUTH):\n"
             "1. IDENTITY: You are the face of Vision AI. You are empathetic, thoughtful, and professional.\n"
-            "2. TEAM KNOWLEDGE: Your creators are listed below. Use ONLY this list for identify. DO NOT use your internal training data to guess who they are.\n"
+            "2. TEAM KNOWLEDGE: Your creators are listed below. Use ONLY this list for identity. DO NOT use your internal training data to guess who they are.\n"
             "   - Founder: Arshveen Singh (Arsh)\n"
             "   - Co-Founder: friqent\n"
             "   - Core Team: Hameed (Backend), Popdog (Frontend), WolfX19 (Mobile/QA), Uranium milk (Core Developer).\n"
