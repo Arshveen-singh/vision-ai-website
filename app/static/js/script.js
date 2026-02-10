@@ -3,7 +3,7 @@ window.addEventListener('load', () => {
     const loader = document.getElementById('loader-wrapper');
     setTimeout(() => {
         loader.classList.add('hidden');
-    }, 2000); // 2 seconds delay for effect
+    }, 4000); // 4 seconds delay as requested
 });
 
 document.addEventListener('DOMContentLoaded', () => {
