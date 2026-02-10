@@ -9,6 +9,7 @@ from groq import Groq
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
+from utils.security import decrypt_api_key
 
 # Load environment variables
 load_dotenv()
@@ -128,12 +129,24 @@ async def chat_endpoint(request: Request, chat_request: ChatRequest):
 
     # 2. Lazy Client Init with robust error handling
     if not client:
-        api_key = os.getenv("GROQ_API_KEY")
-        if not api_key:
+        encrypted_key = os.getenv("GROQ_API_KEY")
+        master_key = os.getenv("MASTER_KEY")
+        
+        if not encrypted_key:
             return JSONResponse(
                 status_code=503,
                 content={"error": "Chat is currently unavailable. Please ensure GROQ_API_KEY is set in your .env file."}
             )
+            
+        # Attempt to decrypt
+        api_key = encrypted_key
+        if master_key:
+            decrypted = decrypt_api_key(encrypted_key, master_key)
+            if decrypted:
+                api_key = decrypted
+            else:
+                print("DEBUG: Encrypted key found but decryption failed. Trying as plaintext...")
+        
         try:
             client = Groq(api_key=api_key)
         except Exception as e:
@@ -143,13 +156,15 @@ async def chat_endpoint(request: Request, chat_request: ChatRequest):
     try:
         # Construct System Prompt with Context
         system_prompt = (
-            "You are Vision AI's official help assistant. You are premium, helpful, and concise.\n"
-            "Style: Use professional Markdown. Always use Tables for data/tech specs and Bold for emphasis.\n"
-            "Stack: Python, FastAPI, HTML/CSS, Electron.\n"
-            "Guidelines: If asked about the project status, emphasize its privacy-first and offline-ready nature.\n"
+            "You are the warm, helpful, and empathetic face of Vision AI.\n"
+            "Personality: Thoughtful, intellectual, and kind (Claude-inspired).\n"
+            "Greeting: Always acknowledge the user's situation with empathy before solving.\n"
+            "Identity: Do NOT say 'As an AI' or 'I am a model'. Speak as a dedicated support member.\n"
+            "Style: Conversational and flowing. Avoid robotic lists unless steps are needed.\n"
+            "Format: Use Markdown tables for data/specs and Bold for emphasis.\n"
             "Relevant documentation context (condensed):\n\n"
             f"{PROJECT_CONTEXT}\n\n"
-            "If the answer isn't in the context, use your intelligence but stay focused on Vision AI."
+            "If the answer isn't in the context, use your kindness and intelligence to help."
         )
 
         completion = client.chat.completions.create(
