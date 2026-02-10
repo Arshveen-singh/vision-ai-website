@@ -11,10 +11,7 @@ from groq import Groq
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
-try:
-    from utils.security import decrypt_api_key
-except ImportError:
-    from app.utils.security import decrypt_api_key
+from app.utils.security import decrypt_api_key
 
 # Load environment variables
 load_dotenv()
