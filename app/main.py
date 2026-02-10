@@ -112,6 +112,7 @@ async def beta_signup(signup: BetaSignup):
             status_code=500,
             content={"message": "Something went wrong. Please try again later."}
         )
+@app.get("/")
 async def read_root():
     return FileResponse(os.path.join(static_dir, "index.html"))
 
