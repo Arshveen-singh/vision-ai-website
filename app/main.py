@@ -113,6 +113,10 @@ async def beta_signup(request: Request, signup: BetaSignup):
             status_code=500,
             content={"message": "Something went wrong. Please try again later."}
         )
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "timestamp": datetime.now().isoformat()}
+
 @app.get("/")
 async def read_root():
     return FileResponse(os.path.join(static_dir, "index.html"))
