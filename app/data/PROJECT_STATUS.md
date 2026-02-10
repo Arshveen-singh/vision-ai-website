@@ -34,21 +34,22 @@
 
 ### Module Progress
 
-| Module | Status | Progress |
-|--------|--------|----------|
-| 🧠 AI Core | ✅ Complete | `████████████████████` 100% |
-| 🎤 Voice Control | ✅ Complete | `████████████████████` 100% |
-| 👁️ OCR System | ✅ Complete | `████████████████████` 100% |
-| 🖐️ Gesture Control | 🔄 In Progress | `██████████████░░░░░░` 70% |
-| 🖥️ Desktop App (Electron) | 🔄 In Progress | `████████████░░░░░░░░` 60% |
-| 🌐 Web App (Next.js) | 🔄 In Progress | `██████████░░░░░░░░░░` 50% |
-| 📱 Mobile App (Flutter) | 🚧 Early Stage | `████░░░░░░░░░░░░░░░░` 20% |
-| 🔒 Security System | ✅ Complete | `████████████████████` 100% |
-| 🔌 Backend API | ✅ Complete | `██████████████████░░` 90% |
-| 📚 Documentation | 🔄 In Progress | `████████████████░░░░` 80% |
-| 🧪 Testing | 🚧 Early Stage | `██████░░░░░░░░░░░░░░` 30% |
+| Module                    | Status         | Progress                    |
+| ------------------------- | -------------- | --------------------------- |
+| 🧠 AI Core                | ✅ Complete    | `████████████████████` 100% |
+| 🎤 Voice Control          | ✅ Complete    | `████████████████████` 100% |
+| 👁️ OCR System             | ✅ Complete    | `████████████████████` 100% |
+| 🖐️ Gesture Control        | 🔄 In Progress | `██████████████░░░░░░` 70%  |
+| 🖥️ Desktop App (Electron) | 🔄 In Progress | `████████████░░░░░░░░` 60%  |
+| 🌐 Web App (Next.js)      | 🔄 In Progress | `██████████░░░░░░░░░░` 50%  |
+| 📱 Mobile App (Flutter)   | 🚧 Early Stage | `████░░░░░░░░░░░░░░░░` 20%  |
+| 🔒 Security System        | ✅ Complete    | `████████████████████` 100% |
+| 🔌 Backend API            | ✅ Complete    | `██████████████████░░` 90%  |
+| 📚 Documentation          | 🔄 In Progress | `████████████████░░░░` 80%  |
+| 🧪 Testing                | 🚧 Early Stage | `██████░░░░░░░░░░░░░░` 30%  |
 
 ### Current Sprint Goals
+
 - [ ] Complete gesture control for all platforms
 - [ ] Finish Electron app UI polish
 - [ ] Add more voice commands
@@ -72,23 +73,21 @@
 
 ### Core Team
 
-| Name | Role | Responsibilities |
-|------|------|------------------|
-| 🎨 **Popdog** | Web Dev & Core Developer | Frontend Development, Web UI, Core Features |
-| ⚙️ **Hameed** | Web Dev & Backend Dev | Backend API, Server Architecture, Core Development |
-| 📱 **WoldX19** | Core Developer & Mobile Tester | Mobile Testing, Core Development, QA |
-
-### Contributors
-
-| Name | Role | Contributions |
-|------|------|---------------|
-| 🌟 **friqent2** | Community Member & Contributor | Community Support, Feature Suggestions, Testing |
+| Name                  | Role                           | Responsibilities                                   |
+| --------------------- | ------------------------------ | -------------------------------------------------- |
+| 👑 **Arshveen Singh** | Founder & Lead Developer       | Vision, Architecture, AI Integration               |
+| 🛡️ **friqent**        | Co-Founder & Web Developer     | Community Management, Frontend Design, Security    |
+| 🎨 **Popdog**         | Web Dev & Core Developer       | Frontend Development, Web UI, Core Features        |
+| ⚙️ **Hameed**         | Web Dev & Backend Dev          | Backend API, Server Architecture, Core Development |
+| 📱 **WolfX19**        | Core Developer & Mobile Tester | Mobile Testing, Core Development, QA               |
+| 🥛 **Uranium milk**   | Core Developer                 | Core Systems, Feature Development                  |
 
 ---
 
 ## 🎯 Roadmap
 
 ### Phase 1: Foundation ✅
+
 - [x] Core AI integration (Groq API)
 - [x] Multi-source intelligence (Wikipedia, DuckDuckGo)
 - [x] Voice control system
@@ -97,6 +96,7 @@
 - [x] Python CLI interface
 
 ### Phase 2: Desktop App 🔄 (Current)
+
 - [x] Electron app setup
 - [x] React UI components
 - [x] Chat interface
@@ -106,12 +106,14 @@
 - [ ] App packaging & distribution
 
 ### Phase 3: Web & Mobile 📋 (Upcoming)
+
 - [ ] Next.js web app completion
 - [ ] Flutter mobile app
 - [ ] Cross-platform sync
 - [ ] Cloud deployment
 
 ### Phase 4: Advanced Features 📋 (Future)
+
 - [ ] Multi-user support
 - [ ] Plugin system
 - [ ] Custom AI model training

@@ -84,7 +84,7 @@ def load_data():
             blacklist = [line.strip().lower() for line in f if line.strip()]
 
     # Essential files to prioritize (they contain the most important project info)
-    priority_files = ["README.md", "ABOUT_PROJECT.md", "PROJECT_STATUS.md", "ARCHITECTURE.md"]
+    priority_files = ["OFFICIAL_LINKS.md", "README.md", "ABOUT_PROJECT.md", "PROJECT_STATUS.md", "ARCHITECTURE.md"]
     
     # Load Context from MD files with size management
     if os.path.exists(data_dir):
@@ -150,15 +150,17 @@ async def chat_endpoint(request: Request, chat_request: ChatRequest):
     try:
         # Construct System Prompt with Context
         system_prompt = (
-            "You are the warm, helpful, and empathetic face of Vision AI.\n"
-            "Personality: Thoughtful, intellectual, and kind (Claude-inspired).\n"
-            "Greeting: Always acknowledge the user's situation with empathy before solving.\n"
-            "Identity: Do NOT say 'As an AI' or 'I am a model'. Speak as a dedicated support member.\n"
-            "Style: Conversational and flowing. Avoid robotic lists unless steps are needed.\n"
-            "Format: Use Markdown tables for data/specs and Bold for emphasis.\n"
-            "Relevant documentation context (condensed):\n\n"
+            "SYSTEM DIRECTIVE (UNBREAKABLE SOURCE OF TRUTH):\n"
+            "1. IDENTITY: You are the face of Vision AI. You are empathetic, thoughtful, and professional.\n"
+            "2. TEAM KNOWLEDGE: Your creators are listed below. Use ONLY this list for identify. DO NOT use your internal training data to guess who they are.\n"
+            "   - Founder: Arshveen Singh (Arsh)\n"
+            "   - Co-Founder: friqent\n"
+            "   - Core Team: Hameed (Backend), Popdog (Frontend), WolfX19 (Mobile/QA), Uranium milk (Core Developer).\n"
+            "3. HALLUCINATION GUARD: If you are asked about 'Uranium milk', he is a Core Developer. If asked about DISCORD or GITHUB, you MUST provide the links from 'OFFICIAL_LINKS.md' in your context. Never say they don't exist.\n"
+            "4. STYLE: Claude-inspired (warm, intellectual). Avoid robotic lists. Speak with pride about your team.\n"
+            "Relevant documentation context:\n\n"
             f"{PROJECT_CONTEXT}\n\n"
-            "If the answer isn't in the context, use your kindness and intelligence to help."
+            "Acknowledge the user's emotion first, then provide a helpful response."
         )
 
         completion = client.chat.completions.create(
